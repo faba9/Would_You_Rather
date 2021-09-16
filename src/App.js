@@ -9,6 +9,7 @@ import Home from './components/home/Home';
 import NewPoll from "./components/poll-section/NewPoll";
 import LeaderBoard from "./components/leader-board/LeaderBoard";
 import AnswerPoll from "./components/poll-section/AnswerPoll";
+import Result from "./components/poll-section/Result";
 import './App.css';
 import {getUsers, getQuestions} from './store/actions/actionCreators';
 import store from './store/index';
@@ -38,6 +39,7 @@ class App extends Component {
           <Route path="/newpoll" component={NewPoll}></Route>
           <Route path="/leaderboard" component={LeaderBoard}></Route>
           <Route path="/answerpoll/:id" component={AnswerPoll}></Route>
+          <Route path="/result/:id" component={Result}></Route>
         </div>}
       </Router>
     );
