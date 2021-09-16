@@ -4,19 +4,17 @@ import Nav from '../home/Nav';
 import LeaderCard from './LeaderCard';
 import Footer from '../home/Footer';
 import {connect} from 'react-redux';
-// وين وصلتي ؟ in sorting
+
 class LeaderBoard extends Component {
     score = (user) => {
         return user.questions.length + Object.values(user.answers).length
     }
     render() {
         const users = Object.values(this.props.users);
-        const sortedUsers = users.sort((a, b) => this.score(b) - this.score(a))
-        console.log(sortedUsers)
         return (
             <div>
                 <Nav/>
-                <div className="container bg-light p-5 pb-0 d-flex border mt-5 flex-wrap flex-column" style={{maxWidth:550}}>
+                <div className="container bg-light p-5 d-flex border mt-5 flex-wrap flex-column" style={{maxWidth:550}}>
                     <ul className="list-group">
                         {users.sort().map(user => {
 

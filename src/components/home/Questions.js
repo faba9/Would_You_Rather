@@ -17,7 +17,7 @@ class Questions extends Component {
 
         return (
             <div>
-                <section className='container bg-light p-5 pb-0 d-flex border mt-5 flex-wrap flex-column' style={{maxWidth: 550}}>
+                <section className='container bg-light p-5 d-flex border mt-5 flex-wrap flex-column' style={{maxWidth: 550}}>
                     
                     <div className="accordion" id="accordionExample">
                         <div className="accordion-item">
@@ -46,8 +46,8 @@ class Questions extends Component {
                             </button>
                             </h2>
                             <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
-                                <ul classname="list-group">
+                            <div className="accordion-body p-0">
+                                <ul className="list-group">
                                     {Answered.length>0?Answered.map(question => {
                                         return (
                                             <li className="list-group-item p-0 mb-3 rounded-item" key={question.id}><QuestionCard question={question}/></li>

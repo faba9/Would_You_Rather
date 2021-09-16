@@ -8,7 +8,7 @@ class QuestionCard extends Component {
         const users = Object.values(this.props.users);
         const imageLink = users.filter(user => user.id === question.author)
         return (
-            <Fragment>
+            <div>
                 {this.props.question?
                     <div className="d-flex flex-column">
                         <header className="h6  p-2 head-style border-bottom">
@@ -24,7 +24,7 @@ class QuestionCard extends Component {
                         </div>
                     </div>
                 :null}
-            </Fragment>
+            </div>
         );
     }
 }

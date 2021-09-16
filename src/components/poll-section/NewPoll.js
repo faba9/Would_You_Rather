@@ -4,7 +4,7 @@ import Nav from "../home/Nav";
 import { _saveQuestion } from "../../_DATA";
 import { connect } from "react-redux";
 import store from "../../store";
-import { addQuestion, getQuestions, getUsers } from "../../store/actions/actionCreators";
+import { getQuestions, getUsers } from "../../store/actions/actionCreators";
 
 class NewPoll extends Component {
   state = {
@@ -27,7 +27,6 @@ class NewPoll extends Component {
       await _saveQuestion(newQuestion).then((res) => {
         store.dispatch(getQuestions(res.questions));
         store.dispatch(getUsers(res.users))
-
       });
       this.setState({ optionOne: "", optionTwo: "", disabled: true });
     }
