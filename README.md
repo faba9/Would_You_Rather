@@ -95,4 +95,4 @@ Your code will talk to the database via 4 methods:
 | answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
 
 ## Demo
-(https://brave-wescoff-142a7b.netlify.app/).
+https://brave-wescoff-142a7b.netlify.app/
