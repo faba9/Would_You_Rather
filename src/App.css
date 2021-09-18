@@ -4,7 +4,6 @@ body{
     box-sizing: border-box;
 }
 :root{
-    --size: 1rem;
     --white: #f3f3f3;
     --success: #198754;
 }
@@ -45,4 +44,8 @@ body{
 .poll-head{
     border-bottom: 1px solid black;
     width: fit-content
+}
+.style-meter{
+    width: 7rem;
+    height: 1.4rem;
 }

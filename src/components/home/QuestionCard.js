@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
 
@@ -19,7 +19,12 @@ class QuestionCard extends Component {
                             <div className="question col-8">
                                 <h6 className="h6">Would you rather</h6>
                                 <p className="mt-1">{question.optionOne.text} or...</p>
+                                {this.props.type === 'unanswered'?
+                                
                                 <Link to={{pathname: `/answerpoll/${question.id}`, state:question}} className="btn btn-success">Answer Poll</Link>
+                                :
+                                <Link to={{pathname: `/result/${question.id}`, state:question}} className="btn btn-primary">Results</Link>
+                                }
                             </div>
                         </div>
                     </div>

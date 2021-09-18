@@ -5,16 +5,16 @@ import { _saveQuestion } from "../../_DATA";
 import { connect } from "react-redux";
 import store from "../../store";
 import { getQuestions, getUsers } from "../../store/actions/actionCreators";
+import {Link} from "react-router-dom";
 
 class NewPoll extends Component {
   state = {
     optionOne: "",
-    optionTwo: "",
-    disabled: false
+    optionTwo: ""
   };
 
   handleChange = (e) => {
-    this.setState({ [e.target.id]: e.target.value });
+    this.setState({ [e.target.id]: e.target.value});
   };
   
   handleSubmit = async () => {
@@ -28,7 +28,6 @@ class NewPoll extends Component {
         store.dispatch(getQuestions(res.questions));
         store.dispatch(getUsers(res.users))
       });
-      this.setState({ optionOne: "", optionTwo: "", disabled: true });
     }
   };
 
@@ -68,14 +67,25 @@ class NewPoll extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <button
+            {this.state.optionOne.length > 0 && this.state.optionTwo.length > 0?
+              <Link
               type="submit"
               className="btn btn-success w-100 mt-3 mb-3"
               onClick={this.handleSubmit}
-              disabled={this.state.disabled}
+              disabled={this.state.optionOne.length > 0 && this.state.optionTwo.length > 0? false:true}
+              to="/home"
+            >
+              Submit
+            </Link>
+            :
+            <button
+              type="submit"
+              className="btn btn-success w-100 mt-3 mb-3"
+              disabled={'disabled'}
             >
               Submit
             </button>
+            }
           </div>
         </div>
       </div>

@@ -5,27 +5,29 @@ import {_saveQuestionAnswer} from '../../_DATA';
 import {connect} from 'react-redux';
 import {getUsers, getQuestions} from '../../store/actions/actionCreators';
 import store from '../../store/index';
+import {Link} from "react-router-dom";
 
 class AnswerPoll extends Component {
     state = {
-        checked:'',
-        disabled:true
+        checked:''
     }
-    handleChange = async (e) => {
-        await this.setState({checked:e.target.value})
-        this.setState({disabled:false})
+    handleChange = (e) => {
+        this.setState({checked:e.target.value})
     }
     handleSubmit = async () => {
-        let newQuestionAnswer = {
-            authedUser: this.props.authUser,
-            qid: this.props.location.state.id,
-            answer: this.state.checked
+        if (this.state.checked.length >0){
+
+            let newQuestionAnswer = {
+                authedUser: this.props.authUser,
+                qid: this.props.location.state.id,
+                answer: this.state.checked
+            }
+            
+            await _saveQuestionAnswer(newQuestionAnswer).then(res  =>{
+                store.dispatch(getQuestions(res.questions))
+                store.dispatch(getUsers(res.users))
+            });
         }
-        this.setState({disabled:true}) // when you use setState, automaticly re-render component
-        await _saveQuestionAnswer(newQuestionAnswer).then(res  =>{
-            store.dispatch(getQuestions(res.questions))
-            store.dispatch(getUsers(res.users))
-        })
     }
 
     render() {
@@ -38,10 +40,10 @@ class AnswerPoll extends Component {
                         <header className="h6 text-left p-2 head-style border-bottom">
                             <h6>{question.author} asks:</h6>
                         </header>
-                        <div className="body d-flex flex-row align-items-end p-3 justify-content-around">
+                        <div className="d-flex flex-row align-items-end p-3 justify-content-around">
                             <img src="/images/avatars/cat.png" style={{width: 100}} alt={""}/>
                             <div className="question">
-                                <h6 className="h6">Would you rather</h6>
+                                <p className="h6">Would you rather</p>
                                 <form onChange={this.handleChange} value={this.state.checked}
                                 //  disabled={this.state.disabled}
                                  >
@@ -59,7 +61,15 @@ class AnswerPoll extends Component {
                                             </label>
                                         </div>
                                     </div>
-                                    <button className="btn btn-success" disabled={this.state.disabled}onClick={this.handleSubmit}>Submit</button>
+                                    {this.state.checked.length>0?
+                                    <Link 
+                                    className="btn btn-success" 
+                                    onClick={this.handleSubmit}
+                                    to={{pathname: `/result/${question.id}`, state:question}} >Submit</Link>
+                                    :
+                                    <button 
+                                    className="btn btn-success" disabled={'disabled'}>Submit</button>
+                                    }
                                 </form>
                             </div>
                         </div>

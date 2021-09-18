@@ -11,12 +11,13 @@ class LeaderBoard extends Component {
     }
     render() {
         const users = Object.values(this.props.users);
+        const sortedUsers = users.sort((a, b) => this.score(b) - this.score(a));
         return (
             <div>
                 <Nav/>
                 <div className="container bg-light p-5 d-flex border mt-5 flex-wrap flex-column" style={{maxWidth:550}}>
                     <ul className="list-group">
-                        {users.sort().map(user => {
+                        {sortedUsers.map(user => {
 
                             return (
                                 <li className="list-group-item p-0 mb-3 rounded-item" key={user.id}>

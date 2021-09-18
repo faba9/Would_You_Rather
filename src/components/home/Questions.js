@@ -31,9 +31,9 @@ class Questions extends Component {
                                 <ul className="list-group">
                                     {Unanswered.length>0?Unanswered.map(question => {
                                         return (
-                                            <li className="list-group-item p-0 mb-3 rounded-item" key={question.id}><QuestionCard question={question}/></li>
+                                            <li className="list-group-item p-0 mb-3 rounded-item" key={question.id}><QuestionCard question={question} type='unanswered'/></li>
                                         );
-                                    }):<p className="text-center">No Unanswered Questions</p>
+                                    }):<p className="text-center mt-2 text-danger h6">No Unanswered Questions</p>
                                     }
                                 </ul>
                             </div>
@@ -50,9 +50,9 @@ class Questions extends Component {
                                 <ul className="list-group">
                                     {Answered.length>0?Answered.map(question => {
                                         return (
-                                            <li className="list-group-item p-0 mb-3 rounded-item" key={question.id}><QuestionCard question={question}/></li>
+                                            <li className="list-group-item p-0 mb-3 rounded-item" key={question.id}><QuestionCard question={question} type='answered' /></li>
                                         );
-                                    }):<p className="text-center">No Answered Questions</p>
+                                    }):<p className="text-center mt-2 text-danger h6">No Answered Questions</p>
                                     }
                                 </ul>
                             </div>
